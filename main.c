@@ -40,7 +40,7 @@ char* GetEvent()
     char* pattern = 
     "grep -E 'Handlers|EV' /proc/bus/input/devices |"
     "grep -B1 120013 |"
-    "grep -E -o event[0-9]{2}";
+    "grep -E -o event[0-9]" // if you have more than one keyboard you probably need to add {2} to the end of this string;
 
     FILE* pipe = popen(pattern, "r");
     if (!pipe)
@@ -52,3 +52,4 @@ char* GetEvent()
 
     return event;
 }
+
